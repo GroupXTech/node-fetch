@@ -1,10 +1,11 @@
 "use strict";
 
-module.exports = exports = self.fetch;
+let globalObject = typeof self === "undefined" ? global : self;
+module.exports = globalObject.fetch.bind(globalObject)
 
 // Needed for TypeScript and Webpack.
-exports.default = self.fetch.bind(self);
+exports.default = globalObject.fetch.bind(globalObject);
 
-exports.Headers = self.Headers;
-exports.Request = self.Request;
-exports.Response = self.Response;
+exports.Headers = globalObject.Headers;
+exports.Request = globalObject.Request;
+exports.Response = globalObject.Response;
